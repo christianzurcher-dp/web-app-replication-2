@@ -43,7 +43,6 @@ export default class App extends Component {
     return users;
   }
   addUser() {
-    console.log("hello");
     let firstName = prompt("Enter your first name");
     let lastName = prompt("Enter your last Name");
     let description = prompt("Enter a brief description of yourself");
