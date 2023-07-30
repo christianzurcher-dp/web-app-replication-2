@@ -47,7 +47,9 @@ export default class App extends Component {
     let firstName = prompt("Enter your first name");
     let lastName = prompt("Enter your last Name");
     let description = prompt("Enter a brief description of yourself");
-    let initials = `${firstName.charAt()}${lastName.charAt()}`;
+    let initials = `${firstName.charAt().toUpperCase()}${lastName
+      .charAt()
+      .toUpperCase()}`;
     let newUser = {
       initials: initials,
       firstName: firstName,
