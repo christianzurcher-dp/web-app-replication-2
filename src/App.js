@@ -6,7 +6,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      mockData: [
+      users: [
         {
           initials: "CZ",
           firstName: "Christian",
@@ -29,27 +29,45 @@ export default class App extends Component {
     };
   }
 
+  renderUsers() {
+    const users = this.state.users.map((user) => {
+      return (
+        <UserProfile
+          initials={user.initials}
+          firstName={user.firstName}
+          lastName={user.lastName}
+          description={user.description}
+        />
+      );
+    });
+    return users;
+  }
+  addUser() {
+    console.log("hello");
+    let firstName = prompt("Enter your first name");
+    let lastName = prompt("Enter your last Name");
+    let description = prompt("Enter a brief description of yourself");
+    let initials = `${firstName.charAt()}${lastName.charAt()}`;
+    let newUser = {
+      initials: initials,
+      firstName: firstName,
+      lastName: lastName,
+      description: description,
+    };
+    const stateCopy = this.state.users;
+    stateCopy.push(newUser);
+    this.setState({ users: stateCopy });
+  }
+
   render() {
     return (
       <div className="App">
-        <UserProfile
-          initials={this.state.mockData[0].initials}
-          firstName={this.state.mockData[0].firstName}
-          lastName={this.state.mockData[0].lastName}
-          description={this.state.mockData[0].description}
-        />
-        <UserProfile
-          initials={this.state.mockData[1].initials}
-          firstName={this.state.mockData[1].firstName}
-          lastName={this.state.mockData[1].lastName}
-          description={this.state.mockData[1].description}
-        />
-        <UserProfile
-          initials={this.state.mockData[2].initials}
-          firstName={this.state.mockData[2].firstName}
-          lastName={this.state.mockData[2].lastName}
-          description={this.state.mockData[2].description}
-        />
+        <div className="users">
+          {this.renderUsers()}
+          <div className="add-user">
+            <button onClick={() => this.addUser()}>Add User</button>
+          </div>
+        </div>
       </div>
     );
   }
